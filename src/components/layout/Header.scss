@@ -1,0 +1,76 @@
+
+.cart {
+  text-decoration: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  display: flex;
+  gap: 8px;
+  color: var(--White, #fff);
+  text-align: center;
+
+  /* Desktop/Normal */
+  font-family: SF Pro Text;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px;
+  /* 137.5% */
+}
+
+// scroll
+@import "../../components/styles/mixins.scss";
+
+
+.wrapper {
+  background-color: #739AFF !important;
+  top: -45px;
+  nav{
+    background: transparent;
+  }
+  .fixed_navbar {
+    padding: 12px 0;
+    @extend %df;
+    div{
+      justify-content: end !important;
+    }
+    @include media(1250px) {
+      padding: 12px 0px;
+    }
+    
+    .cart {
+      @extend %df;
+      gap: 15px;
+      @extend %btn;
+      margin-right: 19px;
+      text-align: right;
+      color: #739AFF;
+      background-color: #fff !important;
+      .price {
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 22px;
+        color: #739AFF !important;               
+
+        background-color: #fff !important;
+      }
+    }
+  }
+}
+
+.wrapper.sticky {
+  position: fixed;
+  right: 0;
+  left: 0;
+  top: 0;
+  z-index: 10;
+  transition: 0.3s ease-out;
+  box-shadow: 0px 5px 5px -5px rgba(34, 60, 80, 0.6);
+  .fixed_navbar {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+    transition: 0.3s ease-out;
+    padding: 12px 0;
+  }
+}

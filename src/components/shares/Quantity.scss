@@ -1,0 +1,37 @@
+.btn-group {
+   display: flex;
+   align-items: center;
+ }
+ .btns {
+   display: flex;
+   flex-direction: column;
+   button {
+     border: none;
+     padding: 0;
+     background-color: #fff;
+     cursor: pointer;
+ svg{
+    width: 20px;
+    height: 20px;
+ }
+   }
+ 
+ }
+ 
+ .quantity {
+   color: #393939;
+   font-variant-numeric: lining-nums proportional-nums;
+   font-family: Raleway;
+   font-size: 22px;
+   font-style: normal;
+   font-weight: 600;
+   line-height: 100%; /* 22px */
+   padding-right: 10px;
+ }
+ 
+ .trashCard{
+   border: none;
+   img{
+      width: 25px;
+   }
+ }

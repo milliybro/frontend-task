@@ -1,0 +1,18 @@
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+}
+
+li{
+   list-style-type: none;
+}
+
+html, main{
+   background-color: #739AFF;
+
+}
+
+main{
+   margin-top: 0px;
+}
