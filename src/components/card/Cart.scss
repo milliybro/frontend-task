@@ -7,6 +7,7 @@
    box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.25);
    padding: 10px;
    padding-right: 23px;
+   margin-bottom: 20px;
    .cart-left {
      h3 {
        color: #1e1e1e;
@@ -40,3 +41,6 @@
    width: 120px;
  }
  
+ .trashCard{
+  background-color: transparent;
+ }

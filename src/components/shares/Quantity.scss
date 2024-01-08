@@ -5,6 +5,7 @@
  .btns {
    display: flex;
    flex-direction: column;
+   margin-top: 18px;
    button {
      border: none;
      padding: 0;
@@ -34,4 +35,10 @@
    img{
       width: 25px;
    }
+ }
+ .plus svg{
+  margin-top: 0px !important;
+ }
+ .minus svg{
+  margin-top: -40px;
  }
