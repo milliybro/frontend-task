@@ -1825,6 +1825,11 @@ react-bootstrap@^2.9.0:
     uncontrollable "^7.2.1"
     warning "^4.0.3"
 
+react-creditcard-validator@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.npmjs.org/react-creditcard-validator/-/react-creditcard-validator-1.0.6.tgz"
+  integrity sha512-ETvc2QKQQxjlnFiQkW7bCR+plkOkGF7ykWgL8dQriN+brhxyNrfu+GxqCyi+U+u+iihAeN19d2SZ1Aiy2J0nuw==
+
 "react-dom@^15.x.x || ^16.x.x || ^17.x.x || ^18.x.x", react-dom@^18.2.0, react-dom@>=16, react-dom@>=16.14.0, react-dom@>=16.6.0, react-dom@>=16.8:
   version "18.2.0"
   resolved "https://registry.npmjs.org/react-dom/-/react-dom-18.2.0.tgz"

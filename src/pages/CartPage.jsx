@@ -1,4 +1,4 @@
-import { Fragment, useContext } from "react";
+import { Fragment, useContext, useState } from "react";
 import { ProductContext } from "../context/ProductContext";
 import CartCard from "../components/card/CartCard";
 import client from "../assets/cart/client.png";
@@ -10,9 +10,37 @@ import arrow from "../assets/cart/arrow.png";
 
 import "./CartPage.scss";
 import { NavLink } from "react-router-dom";
+import { Button, Col, Form, Row } from "react-bootstrap";
+import { useCreditCardValidator } from "react-creditcard-validator";
 
 const CartPage = () => {
-  const { cart, totalPriceOfCart, shipping, totalCart } = useContext(ProductContext);
+  const { cart, totalPriceOfCart, shipping, totalCart } =
+    useContext(ProductContext);
+  const [validated, setValidated] = useState(false);
+
+  const handleSubmit = (event) => {
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
+    setValidated(true);
+  };
+
+  function expDateValidate(month, year) {
+    if (Number(year) > 2030) {
+      return "Expiry Date Year cannot be greater than 2030";
+    }
+    return;
+  }
+
+  const {
+    getCardNumberProps,
+    getCVCProps,
+    getExpiryDateProps,
+    meta: { erroredInputs },
+  } = useCreditCardValidator({ expiryDateValidator: expDateValidate });
   return (
     <Fragment>
       <section>
@@ -56,21 +84,60 @@ const CartPage = () => {
                 <img src={ruPay} alt="" />
                 <h3>See all</h3>
               </div>
-              <form action="#">
-                <label htmlFor="">Name on card</label>
-                <input type="text" placeholder="Name" />
-                <label htmlFor="">Card Number</label>
-                <input type="number" placeholder="1111 2222 3333 4444" />
-                <div className="form-double">
-                  <div>
-                    <label htmlFor="">Expiration date</label>
-                    <input type="date" placeholder="" />
-                  </div>
-                  <div>
-                    <label htmlFor="">CVV</label>
-                    <input type="number" placeholder="123" />
-                  </div>
-                </div>
+
+              <Form noValidate validated={validated} onSubmit={handleSubmit}>
+                <Form.Group md="12" controlId="validationCustom01">
+                  <Form.Label>Name on card</Form.Label>
+                  <Form.Control required type="text" placeholder="Name" />
+                  <Form.Control.Feedback type="invalid">
+                    Please provide a valid card name.
+                  </Form.Control.Feedback>
+                </Form.Group>
+                <Form.Group md="12" controlId="validationCustom02">
+                  <Form.Label>Card Number</Form.Label>
+                  <Form.Control
+                    required
+                    type="number"
+                    placeholder="1111 2222 3333 4444"
+                    {...getCardNumberProps()}
+                  />
+                  <small>
+                    {erroredInputs.cardNumber && erroredInputs.cardNumber}
+                  </small>
+                  <Form.Control.Feedback type="invalid">
+                    Please provide a valid card number.
+                  </Form.Control.Feedback>
+                </Form.Group>
+                <Row className="mb-3">
+                  <Form.Group as={Col} md="6" controlId="validationCustom03">
+                    <Form.Label>Expiration date</Form.Label>
+                    <Form.Control
+                      type="date"
+                      placeholder="City"
+                      required
+                      {...getExpiryDateProps()}
+                    />
+                    <small>
+                      {erroredInputs.expiryDate && erroredInputs.expiryDate}
+                    </small>
+                    <Form.Control.Feedback type="invalid">
+                      Please provide a valid date.
+                    </Form.Control.Feedback>
+                  </Form.Group>
+                  <Form.Group as={Col} md="6" controlId="validationCustom04">
+                    <Form.Label>CVV</Form.Label>
+                    <Form.Control
+                      type="number"
+                      placeholder="123"
+                      {...getCVCProps()}
+                      required
+                    />
+                    <small>{erroredInputs.cvc && erroredInputs.cvc}</small>
+                    <Form.Control.Feedback type="invalid">
+                      Please provide a valid CVV number.
+                    </Form.Control.Feedback>
+                  </Form.Group>
+                </Row>
                 <div className="line"></div>
                 <div className="shop-pay">
                   <div className="subtotal shop">
@@ -86,13 +153,13 @@ const CartPage = () => {
                     <h5>$ {totalCart}</h5>
                   </div>
                 </div>
-                <button>
-                  ${totalCart}
+                <Button type="submit">
+                  ${totalCart}{" "}
                   <span>
                     Checkout <img src={right} alt="" />
                   </span>
-                </button>
-              </form>
+                </Button>
+              </Form>
             </div>
           </div>
         </div>
